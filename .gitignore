@@ -34,4 +34,6 @@
 # Build folders
 /TsukiyomiEngine/Release/
 /TsukiyomiEngine/Debug/
+/TsukiyomiEngine/TsukiyomiEditor/obj/
+
 TsukiyomiEngine/.vs/TsukiyomiEngine/v17/Browse.VC.opendb
