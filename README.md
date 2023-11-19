@@ -23,7 +23,7 @@ Welcome to Tsukiyomi, a game engine written in C++ with its editor built in C# u
     git clone https://github.com/AtomSnow/tsukiyomi-engine.git
     ```
 
-2. **C++ Compilation**:
+2. **Compilation**:
    - Open the `TsukiyomiEngine` solution in Visual Studio.
    - Set the `TsukiyomiEditor` as startup project.
    - Build all projects in solution to compile the C++ game engine and the editor.
