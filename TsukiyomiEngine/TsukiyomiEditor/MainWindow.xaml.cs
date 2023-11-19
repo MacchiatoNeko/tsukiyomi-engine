@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TsukiyomiEditor.ProjectBrowser;
 
 namespace TsukiyomiEditor
 {
@@ -23,6 +24,25 @@ namespace TsukiyomiEditor
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += OnMainWindowLoaded;
+        }
+        private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= OnMainWindowLoaded;
+            OpenWindow();
+        }
+
+        private void OpenWindow()
+        {
+            var window = new ProjectBrowserWindow();
+            if (window.ShowDialog() == false)
+            {
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                // Fill later
+            }
         }
     }
 }
