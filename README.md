@@ -24,13 +24,10 @@ Welcome to Tsukiyomi, a game engine written in C++ with its editor built in C# u
     ```
 
 2. **C++ Compilation**:
-   - Open the `TsukiyomiEngine` directory in Visual Studio.
-   - Build the solution to compile the C++ game engine.
-
-3. **C# WPF Editor Compilation**:
-   - Navigate to the `TsukiyomiEditor` directory.
-   - Open the solution file in Visual Studio.
-   - Build the solution to compile the C# WPF editor.
+   - Open the `TsukiyomiEngine` solution in Visual Studio.
+   - Set the `TsukiyomiEditor` as startup project.
+   - Build all projects in solution to compile the C++ game engine and the editor.
+   - Next to the solution there will be `Release` or `Debug` directory containing the build.
 
 ## Contributing
 
