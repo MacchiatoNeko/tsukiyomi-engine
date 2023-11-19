@@ -5,23 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TsukiyomiEditor.ProjectBrowser"
         mc:Ignorable="d"
-        Title="ProjectBrowserWindow" Height="450" Width="800">
+        Title="Project Browser" Height="500" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2.5">
-            <ToggleButton Content="Open" Name="openproj" FontSize="24" Margin="5" Click="OnClick"/>
-            <ToggleButton Content="New" Name="newproj" FontSize="24" Margin="5" Click="OnClick"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <ToggleButton Content="Open" Name="openproj" FontSize="24" Margin="5" Click="OnClick" IsChecked="True"/>
+            <ToggleButton Content="New" Name="newproj" FontSize="24" Margin="5" Click="OnClick" IsChecked="False"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Border Width="800" Background="Gray">
-                <TextBlock FontSize="32" Text="Current"></TextBlock>
-            </Border>
-            <Border Width="800" Background="White">
-                <TextBlock FontSize="32" Text="Fresh"></TextBlock>
-            </Border>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Name="browserContent">
+            <local:OpenView/>
+            <local:NewView/>
         </StackPanel>
     </Grid>
 </Window>

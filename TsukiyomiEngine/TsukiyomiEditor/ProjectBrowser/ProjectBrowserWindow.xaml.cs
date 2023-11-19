@@ -23,5 +23,27 @@ namespace TsukiyomiEditor.ProjectBrowser
         {
             InitializeComponent();
         }
+
+        private void OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender == openproj)
+            {
+                if (newproj.IsChecked == true)
+                {
+                    newproj.IsChecked = false;
+                    browserContent.Margin = new Thickness(0, 0, 0, 0);
+                }
+                openproj.IsChecked = true;
+            }
+            else
+            {
+                if (openproj.IsChecked == true)
+                {
+                    openproj.IsChecked = false;
+                    browserContent.Margin = new Thickness(-800, 0, 0, 0);
+                }
+                newproj.IsChecked = true;
+            }
+        }
     }
 }
