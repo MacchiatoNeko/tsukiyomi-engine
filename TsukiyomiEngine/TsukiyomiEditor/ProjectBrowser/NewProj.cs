@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -19,43 +20,54 @@ namespace TsukiyomiEditor.ProjectBrowser
 
         [DataMember]
         public List<string> ProjFolders { get; set; }
+
+        public byte[] Icon { get; set; }
+        public byte[] Thumb { get; set; }
+
+        public string IconPath { get; set; }
+        public string ThumbPath { get; set; }
+        public string ProjectPath { get; set; }
     }
 
     class NewProj : ViewModelBase
     {
         // TODO: Support install preparation script
         private readonly string _templatePath = @"..\ProjectTemplates\";
-        private string _name = "New_Project";
-        private string _path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\TsukiyomiEngineProjects\";
+        private string _projectname = "New_Project";
+        private string _projectpath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\TsukiyomiEngineProjects\";
 
-        public string Name
+        public string projectName
         {
-            get => _name;
+            get => _projectname;
             set
             {
-                if (_name != value)
+                if (_projectname != value)
                 {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
+                    _projectname = value;
+                    OnPropertyChanged(nameof(projectName));
                 }
             }
         }
 
-        public string Path
+        public string projectPath
         {
-            get => _path;
+            get => _projectpath;
             set
             {
-                if (_path != value)
+                if (_projectpath != value)
                 {
-                    _path = value;
-                    OnPropertyChanged(nameof(Path));
+                    _projectpath = value;
+                    OnPropertyChanged(nameof(projectPath));
                 }
             }
         }
+
+        private ObservableCollection<TemplateFile> _templateFile = new ObservableCollection<TemplateFile>();
+        public ReadOnlyObservableCollection<TemplateFile> TemplateFiles { get; }
 
         public NewProj()
         {
+            TemplateFiles = new ReadOnlyObservableCollection<TemplateFile>(_templateFile);
             try
             {
                 var templatesFound = Directory.GetFiles(_templatePath, "template.xml", SearchOption.AllDirectories);
@@ -63,14 +75,13 @@ namespace TsukiyomiEditor.ProjectBrowser
                 Debug.Assert(templatesFound.Any());
                 foreach (var templateFile in templatesFound)
                 {
-                    var template = new TemplateFile()
-                    {
-                        ProjType = "EmptyProject",
-                        ProjFile = "Project.tsukiyomi",
-                        ProjFolders = new List<string>() { ".tsukiyomi", "Resources", "Code" }
-                    };
-
-                    Serializer.ToFile(template, templateFile);
+                    var template = Serializer.FromFile<TemplateFile>(templateFile);
+                    template.ThumbPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(templateFile), "thumbnail.png"));
+                    template.IconPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(templateFile), "icon.png"));
+                    template.ProjectPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(templateFile), template.ProjFile));
+                    template.Icon = File.ReadAllBytes(template.IconPath);
+                    template.Thumb = File.ReadAllBytes(template.ThumbPath);
+                    _templateFile.Add(template);
                 }
             }
             catch (Exception e)
