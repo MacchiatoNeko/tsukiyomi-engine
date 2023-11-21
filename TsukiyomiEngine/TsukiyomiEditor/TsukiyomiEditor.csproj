@@ -78,6 +78,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ProjectManager\Project.cs" />
+    <Compile Include="ProjectManager\Scene.cs" />
     <Compile Include="Utilities\Serializer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -91,28 +93,28 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ProjectBrowser\NewView.xaml">
+    <Page Include="ProjectManager\NewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProjectBrowser\OpenView.xaml">
+    <Page Include="ProjectManager\OpenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProjectBrowser\ProjectBrowserWindow.xaml">
+    <Page Include="ProjectManager\ProjectBrowserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProjectBrowser\NewProj.cs" />
-    <Compile Include="ProjectBrowser\NewView.xaml.cs">
+    <Compile Include="ProjectManager\NewProject.cs" />
+    <Compile Include="ProjectManager\NewView.xaml.cs">
       <DependentUpon>NewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProjectBrowser\OpenView.xaml.cs">
+    <Compile Include="ProjectManager\OpenView.xaml.cs">
       <DependentUpon>OpenView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProjectBrowser\ProjectBrowserWindow.xaml.cs">
+    <Compile Include="ProjectManager\ProjectBrowserWindow.xaml.cs">
       <DependentUpon>ProjectBrowserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\ViewModelBase.cs" />

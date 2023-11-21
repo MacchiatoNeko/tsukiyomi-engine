@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TsukiyomiEditor.ProjectBrowser
+namespace TsukiyomiEditor.ProjectManager
 {
     /// <summary>
-    /// Interaction logic for NewView.xaml
+    /// Interaction logic for OpenView.xaml
     /// </summary>
-    public partial class NewView : UserControl
+    public partial class OpenView : UserControl
     {
-        public NewView()
+        public OpenView()
         {
             InitializeComponent();
         }
